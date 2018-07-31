@@ -62,7 +62,7 @@ view: customer {
   }
 
   dimension: store_id {
-    type: yesno
+    type: number
     # hidden: yes
     sql: ${TABLE}.store_id ;;
   }

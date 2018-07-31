@@ -2,7 +2,7 @@ view: film_category {
   sql_table_name: sakila.film_category ;;
 
   dimension: category_id {
-    type: yesno
+    type: number
     # hidden: yes
     sql: ${TABLE}.category_id ;;
   }
