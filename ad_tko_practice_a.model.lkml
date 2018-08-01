@@ -12,9 +12,33 @@ datagroup: caching_policy{
 persist_with: caching_policy
 
 explore: store_information {
-  from:  store
-}
+  from: store
 
+  join: address {
+    view_label: "Store Information"
+    fields:[address.address, address.district, address.postal_code, address.phone]
+    type: left_outer
+    sql_on: ${store_information.address_id} = ${address.address_id} ;;
+    relationship: one_to_one
+  }
+
+  join: city {
+    view_label: "Store Information"
+    fields: [city.city]
+    type: left_outer
+    sql_on: ${address.city_id} = ${city.city_id} ;;
+    relationship: many_to_one
+  }
+
+  join: country {
+    view_label: "Store Information"
+    fields: [country.country]
+    type: left_outer
+    sql_on: ${city.country_id} = ${country.country_id} ;;
+    relationship: many_to_one
+  }
+
+}
 
 explore: customer_information {
   from: customer
